@@ -42,7 +42,8 @@ class HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AliMama Store',
+        title: const Text(
+          'AliMama Store',
           style: TextStyle(
             color: AppColors.textColor,
             fontWeight: FontWeight.bold,

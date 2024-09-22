@@ -75,9 +75,10 @@ class ProductCard extends StatelessWidget {
                         fontSize: 15,
                         fontFamily: 'Roboto',
                         fontWeight: FontWeight.bold,
+                        color: AppColors.textColor,
                       ),
                     ),
-                    const SizedBox(height: 5),
+                    const SizedBox(height: 8),
                     Text(
                       product.description.length > 50
                           ? '${product.description.substring(0, 50)}...'
@@ -87,10 +88,10 @@ class ProductCard extends StatelessWidget {
                       style: const TextStyle(
                         fontSize: 13,
                         fontFamily: 'Roboto',
-                        color: Colors.grey,
+                        color: AppColors.textColor,
                       ),
                     ),
-                    const SizedBox(height: 5),
+                    const SizedBox(height: 10),
                     Row(
                       children: [
                         Text(
@@ -99,7 +100,7 @@ class ProductCard extends StatelessWidget {
                             fontSize: 14,
                             fontFamily: 'Roboto',
                             fontWeight: FontWeight.w500,
-                            color: AppColors.addButtonColor,
+                            color: AppColors.textColor,
                           ),
                         ),
                         const SizedBox(width: 8),
@@ -108,14 +109,13 @@ class ProductCard extends StatelessWidget {
                           style: const TextStyle(
                             fontSize: 14,
                             fontFamily: 'Roboto',
-                            fontWeight: FontWeight.w500,
-                            color: Colors.grey,
+                            color: AppColors.secondaryTextColor,
                             decoration: TextDecoration.lineThrough,
                           ),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 5),
+                    const SizedBox(height: 10),
                     Row(
                       children: [
                         Text(
@@ -123,7 +123,7 @@ class ProductCard extends StatelessWidget {
                           style: const TextStyle(
                             fontSize: 13,
                             fontFamily: 'Roboto',
-                            color: Colors.amber,
+                            color: AppColors.textColor,
                           ),
                         ),
                         const SizedBox(width: 5),
