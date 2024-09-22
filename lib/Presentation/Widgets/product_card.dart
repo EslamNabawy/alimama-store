@@ -6,7 +6,6 @@ import 'package:shimmer/shimmer.dart';
 import '../../Core/Constants/app_colors.dart';
 import '../../Data/Models/product_model.dart';
 
-
 class ProductCard extends StatelessWidget {
   final Product product;
 
@@ -47,7 +46,8 @@ class ProductCard extends StatelessWidget {
                           color: Colors.white,
                         ),
                       ),
-                      errorWidget: (context, url, error) => const Icon(Icons.error),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
                     ),
                   ),
                   Positioned(

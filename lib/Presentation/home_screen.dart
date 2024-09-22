@@ -1,59 +1,89 @@
+import 'package:fake_nike_store/Services/product_service.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import '../cubits/product_cubit.dart';
+
+import '../Core/Constants/app_colors.dart';
+import '../Data/Models/product_model.dart';
 import 'Widgets/product_card.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
+  HomeScreenState createState() => HomeScreenState();
+}
+
+class HomeScreenState extends State<HomeScreen> {
+  List<Product> products = [];
+  bool isLoading = true;
+  bool hasError = false;
+
+  @override
+  void initState() {
+    super.initState();
+    loadProducts();
+  }
+
+  Future<void> loadProducts() async {
+    try {
+      final productList = await ProductService.fetchProducts();
+      setState(() {
+        products = productList;
+        isLoading = false;
+      });
+    } catch (e) {
+      setState(() {
+        hasError = true;
+        isLoading = false;
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ProductCubit()..fetchProducts(),
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Products'),
-        ),
-        body: BlocBuilder<ProductCubit, ProductState>(
-          builder: (context, state) {
-            if (state is ProductLoading) {
-              return const Center(child: CircularProgressIndicator());
-            } else if (state is ProductError) {
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(Icons.error_outline, size: 50, color: Colors.red),
-                    const SizedBox(height: 10),
-                    const Text('Failed to load products. Please try again later.'),
-                    ElevatedButton(
-                      onPressed: () => context.read<ProductCubit>().fetchProducts(),
-                      child: const Text('Retry'),
-                    ),
-                  ],
-                ),
-              );
-            } else if (state is ProductLoaded) {
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2, // 2 items per row
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 10,
-                    childAspectRatio: 0.7, // Adjusted for better layout
-                  ),
-                  itemCount: state.products.length,
-                  itemBuilder: (context, index) {
-                    return ProductCard(product: state.products[index]);
-                  },
-                ),
-              );
-            }
-            return Container();
-          },
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('AliMama Store',
+          style: TextStyle(
+            color: AppColors.textColor,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
+      body: isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : hasError
+              ? Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(Icons.error_outline,
+                          size: 50, color: Colors.red),
+                      const SizedBox(height: 10),
+                      const Text(
+                          'Failed to load products. Please try again later.'),
+                      ElevatedButton(
+                        onPressed: loadProducts,
+                        child: const Text('Retry'),
+                      ),
+                    ],
+                  ),
+                )
+              : Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
+                      childAspectRatio: 0.7,
+                    ),
+                    itemCount: products.length,
+                    itemBuilder: (context, index) {
+                      return ProductCard(product: products[index]);
+                    },
+                  ),
+                ),
     );
   }
 }
