@@ -2,7 +2,6 @@
 
 Welcome to AliMama Store, a sleek and modern Flutter app that brings the world of online shopping to your fingertips! Utilizing the Fake Store API, this app showcases a wide array of products in a visually appealing grid layout.
 
-
 ## ✨ Features
 
 - 🚀 **Fast Loading**: Optimized performance for quick browsing
@@ -63,14 +62,11 @@ For more information on Flutter development:
 - [Flutter Cookbook](https://docs.flutter.dev/cookbook): Useful Flutter samples for common mobile development tasks
 - [Dart Programming Language](https://dart.dev/): Learn more about the Dart language
 
-## 🤝 Contributing
+## 📞 Contact
 
-We welcome contributions to AliMama Store! If you have suggestions for improvements or encounter any issues, please feel free to open an issue or submit a pull request.
+Built with ❤️ by Eslam Tarek Nabawy
 
-## 📄 License
+- **LinkedIn**: [Eslam Tarek Nabawy](https://www.linkedin.com/in/eslam-tarek-nabawy/)
+- **Email**: [eslamtarek.dev@gmail.com](mailto:eslamtarek.dev@gmail.com)
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-Built with ❤️ by [Your Name]
+Feel free to reach out for any questions, suggestions, or collaboration opportunities!
