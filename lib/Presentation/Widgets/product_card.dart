@@ -1,8 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../Core/Constants/app_colors.dart';
 import '../../Data/Models/product_model.dart';
+
 
 class ProductCard extends StatelessWidget {
   final Product product;
@@ -30,13 +33,21 @@ class ProductCard extends StatelessWidget {
                       topLeft: Radius.circular(13),
                       topRight: Radius.circular(13),
                     ),
-                    child: Image.network(
-                      product.image,
+                    child: CachedNetworkImage(
+                      imageUrl: product.image,
                       fit: BoxFit.cover,
                       height: 117,
                       width: double.infinity,
-                      errorBuilder: (context, error, stackTrace) =>
-                          const Icon(Icons.error),
+                      placeholder: (context, url) => Shimmer.fromColors(
+                        baseColor: Colors.grey[300]!,
+                        highlightColor: Colors.grey[100]!,
+                        child: Container(
+                          width: double.infinity,
+                          height: 117,
+                          color: Colors.white,
+                        ),
+                      ),
+                      errorWidget: (context, url, error) => const Icon(Icons.error),
                     ),
                   ),
                   Positioned(
@@ -76,7 +87,7 @@ class ProductCard extends StatelessWidget {
                       style: const TextStyle(
                         fontSize: 13,
                         fontFamily: 'Roboto',
-                        color: AppColors.textColor,
+                        color: Colors.grey,
                       ),
                     ),
                     const SizedBox(height: 5),
@@ -87,7 +98,8 @@ class ProductCard extends StatelessWidget {
                           style: const TextStyle(
                             fontSize: 14,
                             fontFamily: 'Roboto',
-                            color: AppColors.textColor,
+                            fontWeight: FontWeight.w500,
+                            color: AppColors.addButtonColor,
                           ),
                         ),
                         const SizedBox(width: 8),
@@ -97,7 +109,7 @@ class ProductCard extends StatelessWidget {
                             fontSize: 14,
                             fontFamily: 'Roboto',
                             fontWeight: FontWeight.w500,
-                            color: AppColors.secondaryTextColor,
+                            color: Colors.grey,
                             decoration: TextDecoration.lineThrough,
                           ),
                         ),
@@ -111,7 +123,7 @@ class ProductCard extends StatelessWidget {
                           style: const TextStyle(
                             fontSize: 13,
                             fontFamily: 'Roboto',
-                            color: AppColors.textColor,
+                            color: Colors.amber,
                           ),
                         ),
                         const SizedBox(width: 5),
