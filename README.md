@@ -38,21 +38,9 @@ To get started with AliMama Store, follow these simple steps:
 
 1. Ensure you have Flutter installed on your machine.
 2. Clone this repository:
-   ```
-   git clone https://github.com/yourusername/alimama-store.git
-   ```
 3. Navigate to the project directory:
-   ```
-   cd alimama-store
-   ```
 4. Install dependencies:
-   ```
-   flutter pub get
-   ```
 5. Run the app:
-   ```
-   flutter run
-   ```
 
 ## 📚 Learn More
 
