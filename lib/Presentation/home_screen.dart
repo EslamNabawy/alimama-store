@@ -1,114 +1,83 @@
+import 'package:fake_nike_store/Services/product_service.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
-import '../Core/Constants/app_colors.dart';
+import '../Data/Models/product_model.dart';
+import 'Widgets/product_card.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  HomeScreenState createState() => HomeScreenState();
+}
+
+class HomeScreenState extends State<HomeScreen> {
+  List<Product> products = [];
+  bool isLoading = true;
+  bool hasError = false;
+
+  @override
+  void initState() {
+    super.initState();
+    loadProducts();
+  }
+
+  Future<void> loadProducts() async {
+    try {
+      final productList = await ProductService.fetchProducts();
+      setState(() {
+        products = productList;
+        isLoading = false;
+      });
+    } catch (e) {
+      setState(() {
+        hasError = true;
+        isLoading = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: ProductCard(),
+      appBar: AppBar(
+        title: const Text('Products'),
       ),
-    );
-  }
-}
-
-class ProductCard extends StatelessWidget {
-   ProductCard({
-    super.key,
-  });
-  String? productName;
-  String? productDescription;
-  String? productImage;
-  double? productPrice;
-  double? productRating;
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 240,
-      width: 175,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        border: Border.all(color: AppColors.borderColor, width: 2),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Stack(
-            children: [
-              ClipRRect(
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(13),
-                  topRight: Radius.circular(13),
-                ),
-                child: Image.asset(
-                  'assets/Placeholder/placeholder.webp',
-                  fit: BoxFit.cover,
-                  height: 117,
-                  width: double.infinity,
-                ),
-              ),
-              Positioned(
-                top: 7,
-                right: 7,
-                child: SvgPicture.asset(
-                  'assets/Icons/fav_icon.svg', // Your SVG path
-                  height: 27,
-                  width: 27,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 10),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Product Name',
-                  style: TextStyle(
-                    fontSize: 15,
-                    fontFamily: 'Roboto', // Apply Roboto font
-                    fontWeight: FontWeight.bold, // Make it bold for emphasis
+      body: isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : hasError
+              ? Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(Icons.error_outline,
+                          size: 50, color: Colors.red),
+                      const SizedBox(height: 10),
+                      const Text(
+                          'Failed to load products. Please try again later.'),
+                      ElevatedButton(
+                        onPressed: loadProducts,
+                        child: const Text('Retry'),
+                      ),
+                    ],
+                  ),
+                )
+              : Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
+                      childAspectRatio: 0.7,
+                    ),
+                    itemCount: products.length,
+                    itemBuilder: (context, index) {
+                      return ProductCard(product: products[index]);
+                    },
                   ),
                 ),
-                SizedBox(height: 5),
-                Text(
-                  'Description goes here.',
-                  style: TextStyle(
-                    fontSize: 13,
-                    fontFamily: 'Roboto',
-                    color: Colors.grey, // Use grey for secondary text
-                  ),
-                ),
-                SizedBox(height: 5),
-                Text(
-                  '\$99.99',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontFamily: 'Roboto',
-                    fontWeight: FontWeight.w500, // Semi-bold for price
-                    color: AppColors.addButtonColor, // Apply your custom color
-                  ),
-                ),
-                SizedBox(height: 5),
-                Text(
-                  'Rating: 4.5/5',
-                  style: TextStyle(
-                    fontSize: 13,
-                    fontFamily: 'Roboto',
-                    color: Colors.amber, // Rating color (yellow)
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
     );
   }
 }
