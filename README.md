@@ -2,7 +2,6 @@
 
 Welcome to AliMama Store, a sleek and modern Flutter app that brings the world of online shopping to your fingertips! Utilizing the Fake Store API, this app showcases a wide array of products in a visually appealing grid layout.
 
-![Splash Screen](ScreenShots/SplashScreen.png)
 
 ## ✨ Features
 
@@ -16,6 +15,7 @@ Welcome to AliMama Store, a sleek and modern Flutter app that brings the world o
   <tr>
     <td><img src="ScreenShots/Loading_Shimmer.png" alt="Loading Shimmer" width="200"/></td>
     <td><img src="ScreenShots/Home_Screen.png" alt="Home Screen" width="200"/></td>
+    <td><img src="ScreenShots/SplashScreen.png" alt="Splash Screen" width="200"/></td>
   </tr>
   <tr>
     <td align="center"><strong>Loading Shimmer</strong></td>
