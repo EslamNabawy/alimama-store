@@ -42,7 +42,7 @@ I created the design for AliMama Store from scratch based on a provided screensh
 
 Want to try out the AliMama Store app? Download the beta version APK for Android:
 
-[Download APK](https://drive.google.com/file/d/1c0xzzYkQzv-9mixsEaGodFOzOuIKQRT6/view?usp=drive_link)
+[Download APK](https://drive.google.com/drive/folders/19mLOfbUi34cjWyuWS8Xcll3yHN9Iov1q?usp=sharing)
 
 ## 🚀 Getting Started
 
