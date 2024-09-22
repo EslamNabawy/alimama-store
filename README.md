@@ -32,6 +32,18 @@ Welcome to AliMama Store, a sleek and modern Flutter app that brings the world o
 - **flutter_svg**: For rendering SVG icons
 - **cached_network_image**: For efficient image loading and caching
 
+## 🎨 Figma Design
+
+I created the design for AliMama Store from scratch based on a provided screenshot. You can explore the design on Figma:
+
+[Figma Design for AliMama Store](https://www.figma.com/design/19FoHnvUNkYNnzRKY24xcP/AliMama-Store?node-id=0-1&t=FEz7yWviTwMILkta-1)
+
+## 📱 Download Beta APK
+
+Want to try out the AliMama Store app? Download the beta version APK for Android:
+
+[Download APK](https://drive.google.com/file/d/1c0xzzYkQzv-9mixsEaGodFOzOuIKQRT6/view?usp=drive_link)
+
 ## 🚀 Getting Started
 
 To get started with AliMama Store, follow these simple steps:
