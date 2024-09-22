@@ -54,13 +54,6 @@ To get started with AliMama Store, follow these simple steps:
 4. Install dependencies:
 5. Run the app:
 
-## 📚 Learn More
-
-For more information on Flutter development:
-
-- [Flutter Documentation](https://docs.flutter.dev/): Comprehensive guides and API reference
-- [Flutter Cookbook](https://docs.flutter.dev/cookbook): Useful Flutter samples for common mobile development tasks
-- [Dart Programming Language](https://dart.dev/): Learn more about the Dart language
 
 ## 📞 Contact
 
@@ -70,3 +63,11 @@ Built with ❤️ by Eslam Tarek Nabawy
 - **Email**: [eslamtarek.dev@gmail.com](mailto:eslamtarek.dev@gmail.com)
 
 Feel free to reach out for any questions, suggestions, or collaboration opportunities!
+
+## 📚 Learn More
+
+For more information on Flutter development:
+
+- [Flutter Documentation](https://docs.flutter.dev/): Comprehensive guides and API reference
+- [Flutter Cookbook](https://docs.flutter.dev/cookbook): Useful Flutter samples for common mobile development tasks
+- [Dart Programming Language](https://dart.dev/): Learn more about the Dart language
