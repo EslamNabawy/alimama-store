@@ -20,6 +20,7 @@ Welcome to AliMama Store, a sleek and modern Flutter app that brings the world o
   <tr>
     <td align="center"><strong>Loading Shimmer</strong></td>
     <td align="center"><strong>Home Screen</strong></td>
+    <td align="center"><strong>Splash Screen</strong></td>
   </tr>
 </table>
 
