@@ -1,4 +1,4 @@
-# fake_nike_store
+# AliMama Store
 
 using fake store api to display products in grid
 
