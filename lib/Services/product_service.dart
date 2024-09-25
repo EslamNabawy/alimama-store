@@ -1,11 +1,12 @@
 import 'dart:convert';
 
+import 'package:fake_nike_store/Core/Constants/api_const.dart';
 import 'package:http/http.dart' as http;
 
 import '../Data/Models/product_model.dart';
 
 class ProductService {
-  static const String _baseUrl = 'https://fakestoreapi.com/products';
+  static const String _baseUrl = ApiConstants.baseUrl;
 
   static Future<List<Product>> fetchProducts() async {
     final response = await http.get(Uri.parse(_baseUrl));
