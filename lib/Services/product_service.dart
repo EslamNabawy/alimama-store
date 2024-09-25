@@ -1,21 +1,36 @@
-import 'dart:convert';
-
-import 'package:fake_nike_store/Core/Constants/api_const.dart';
-import 'package:http/http.dart' as http;
-
+import 'package:dio/dio.dart';
+import '../Core/Constants/api_const.dart';
 import '../Data/Models/product_model.dart';
 
 class ProductService {
+  // Base URL of the API
   static const String _baseUrl = ApiConstants.baseUrl;
 
-  static Future<List<Product>> fetchProducts() async {
-    final response = await http.get(Uri.parse(_baseUrl));
+  // Create an instance of Dio
+  static final Dio _dio = Dio();
 
-    if (response.statusCode == 200) {
-      List<dynamic> data = jsonDecode(response.body);
-      return data.map((json) => Product.fromJson(json)).toList();
-    } else {
-      throw Exception('Failed to load products');
+  // Fetch products from the API
+  static Future<List<Product>> fetchProducts() async {
+    try {
+      // Make a GET request to the API
+      final response = await _dio.get(_baseUrl);
+
+      // If the response status is OK (200)
+      if (response.statusCode == 200) {
+        // Parse the response data
+        List<dynamic> data = response.data;
+
+        // Convert the JSON into a list of Product objects
+        return data.map((json) => Product.fromJson(json)).toList();
+      } else {
+        throw Exception('Failed to load products');
+      }
+    } on DioException catch (e) {
+      // Handle Dio-specific exceptions (like network errors)
+      throw Exception('Dio error: ${e.message}');
+    } catch (e) {
+      // Handle general errors
+      throw Exception('Error: ${e.toString()}');
     }
   }
 }
