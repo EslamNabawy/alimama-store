@@ -1,9 +1,7 @@
-import 'dart:convert';
-
 import 'package:bloc/bloc.dart';
-import 'package:http/http.dart' as http;
 
 import '../Data/Models/product_model.dart';
+import '../Services/product_service.dart';
 
 class ProductState {}
 
@@ -15,7 +13,11 @@ class ProductLoaded extends ProductState {
   ProductLoaded(this.products);
 }
 
-class ProductError extends ProductState {}
+class ProductError extends ProductState {
+  final String message;
+
+  ProductError(this.message);
+}
 
 class ProductCubit extends Cubit<ProductState> {
   ProductCubit() : super(ProductLoading());
@@ -23,23 +25,20 @@ class ProductCubit extends Cubit<ProductState> {
   List<Product> _cache = [];
 
   Future<void> fetchProducts() async {
+    // If cache is not empty, return the cached products
     if (_cache.isNotEmpty) {
       emit(ProductLoaded(_cache));
       return;
     }
 
     try {
-      final response =
-          await http.get(Uri.parse('https://fakestoreapi.com/products'));
-      if (response.statusCode == 200) {
-        List<dynamic> data = jsonDecode(response.body);
-        _cache = data.map((json) => Product.fromJson(json)).toList();
-        emit(ProductLoaded(_cache));
-      } else {
-        emit(ProductError());
-      }
+      // Call ProductService to fetch products
+      final products = await ProductService.fetchProducts();
+      _cache = products;
+      emit(ProductLoaded(products));
     } catch (e) {
-      emit(ProductError());
+      // Emit an error state with the exception message
+      emit(ProductError(e.toString()));
     }
   }
 }
