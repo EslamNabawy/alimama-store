@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:fake_nike_store/Core/Constants/icon_paths.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shimmer/shimmer.dart';
@@ -54,7 +55,7 @@ class ProductCard extends StatelessWidget {
                     top: 7,
                     right: 7,
                     child: SvgPicture.asset(
-                      'assets/Icons/fav_icon.svg',
+                      IconPaths.favIcon,
                       height: 27,
                       width: 27,
                     ),
@@ -128,7 +129,7 @@ class ProductCard extends StatelessWidget {
                         ),
                         const SizedBox(width: 5),
                         SvgPicture.asset(
-                          'assets/Icons/star_icon.svg',
+                          IconPaths.starIcon,
                           height: 15,
                           width: 15,
                         ),
@@ -143,7 +144,7 @@ class ProductCard extends StatelessWidget {
             bottom: 10,
             right: 10,
             child: SvgPicture.asset(
-              'assets/Icons/add_icon.svg',
+              IconPaths.addIcon,
               height: 30,
               width: 30,
             ),
